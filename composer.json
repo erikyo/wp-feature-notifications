@@ -19,7 +19,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-		"lint": "vendor/bin/phpcs --standard=phpcs.xml.dist --report=summary,source includes/",
+		"lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --report=summary,source",
+		"test": "vendor/bin/phpunit",
 		"lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
 		"cghooks": "vendor/bin/cghooks",
 		"phpcs-fix": "phpcbf --standard=phpcs.xml.dist includes/",
