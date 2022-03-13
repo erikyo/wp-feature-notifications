@@ -1,42 +1,50 @@
 /**
 * Wordpress Core Style - for illustration purposes only
+* https://github.com/WordPress/wordpress-develop/blob/5.9/src/wp-includes/script-loader.php#L1395-L1682
 **/
-@import "wp-core/normalize.css";
-@import "wp-core/dashboard";
-@import "wp-core/admin-menu";
-@import "wp-core/nav-menus";
-@import "wp-core/common";
-@import "wp-core/site-health";
-@import "wp-core/admin-bar";
-@import "wp-core/dashicons";
-@import "wp-core/edit";
-@import "wp-core/buttons";
-@import "wp-core/forms";
-@import "wp-core/list-tables";
+
+@import "../wp-core/src/wp-admin/css/common";
+@import "../wp-core/src/wp-admin/css/forms";
+@import "../wp-core/src/wp-admin/css/admin-menu";
+@import "../wp-core/src/wp-admin/css/dashboard";
+@import "../wp-core/src/wp-admin/css/list-tables";
+@import "../wp-core/src/wp-admin/css/edit";
+@import "../wp-core/src/wp-admin/css/revisions";
+@import "../wp-core/src/wp-admin/css/media";
+@import "../wp-core/src/wp-admin/css/themes";
+@import "../wp-core/src/wp-admin/css/about";
+@import "../wp-core/src/wp-admin/css/nav-menus";
+@import "../wp-core/src/wp-admin/css/widgets";
+@import "../wp-core/src/wp-admin/css/site-icon";
+@import "../wp-core/src/wp-admin/css/l10n";
+@import "../wp-core/src/wp-admin/css/code-editor";
+@import "../wp-core/src/wp-admin/css/site-health";
+@import "../wp-core/src/wp-includes/css/dashicons";
+@import "../wp-core/src/wp-includes/css/buttons";
+@import "../wp-core/src/wp-includes/css/custom-properties";
+
+@import "../wp-core/src/wp-admin/css/common";
+@import "../wp-core/src/wp-admin/css/forms";
+@import "../wp-core/src/wp-admin/css/admin-menu";
+@import "../wp-core/src/wp-admin/css/dashboard";
+@import "../wp-core/src/wp-admin/css/list-tables";
+@import "../wp-core/src/wp-admin/css/edit";
+@import "../wp-core/src/wp-admin/css/revisions";
+@import "../wp-core/src/wp-admin/css/media";
+@import "../wp-core/src/wp-admin/css/themes";
+@import "../wp-core/src/wp-admin/css/about";
+@import "../wp-core/src/wp-admin/css/nav-menus";
+@import "../wp-core/src/wp-admin/css/widgets";
+@import "../wp-core/src/wp-admin/css/site-icon";
+@import "../wp-core/src/wp-admin/css/l10n";
+@import "../wp-core/src/wp-includes/css/admin-bar";
+
 
 /*
 * Body styling - for illustration purposes only
 */
 
 body {
-  padding-top: 32px;
-  height: calc(100% - 32px);
-}
-
-* {
-  box-sizing: inherit;
-}
-
-/* Text meant only for screen readers. */
-.screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
+   padding-top: 32px;
+   height: calc(100% - 32px);
 }

@@ -3,6 +3,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const path = require("path");
+const webpack = require("webpack");
 const {hasBabelConfig, hasCssnanoConfig} = require("@wordpress/scripts/utils");
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -109,7 +110,6 @@ defaultConfig.module = {
           options: {
             sourceMap: ! isProduction,
           },
-
         },
       ],
     },
@@ -119,8 +119,8 @@ defaultConfig.module = {
       type: 'asset/inline',
     },
     {
-      test: /\.(png|jpg|jpeg|gif)$/i,
-      type: 'asset/resource',
+      test: /\.(png|jpg|jpeg|gif|svg|ico)$/i,
+      type: 'asset/resource'
     },
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -132,12 +132,26 @@ defaultConfig.module = {
 const config = {
   ...defaultConfig,
   output: {
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'docs'),
+    filename: 'js/[name].js',
+    assetModuleFilename: 'assets/[hash][ext][query]'
+  },
+  entry: {
+    style: './includes/ui/notification-hub/assets/style/main.js',
+    index: './includes/ui/notification-hub/assets/script/script.js',
+    jquery: '!!expose-loader?exposes=$,jQuery!./includes/ui/notification-hub/assets/vendor/jquery.js',
+    hoverIntent: '!!expose-loader?exposes=hoverintent!./includes/ui/notification-hub/assets/vendor/hoverintent.js',
+    adminBar: '!!expose-loader?exposes=wp!./includes/ui/notification-hub/assets/wp-core/src/js/_enqueues/lib/admin-bar.js',
   },
   plugins: [
     new CleanWebpackPlugin( {
       cleanStaleWebpackAssets: false,
     } ),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      hoverIntent: ['hoverIntent.js', 'default']
+    }),
     new HtmlWebpackPlugin({
       title: 'feature-notifications',
       filename:'index.html',

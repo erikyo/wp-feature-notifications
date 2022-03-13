@@ -15,7 +15,9 @@ window.addEventListener('load', (event) => {
 
   // Click handler to add a new notification
   document.getElementById('save-post').addEventListener("click", function(e) {
+
     e.preventDefault();
+
     let title = document.getElementById('title').value;
     let content = document.getElementById('content').value;
 
@@ -51,5 +53,6 @@ window.addEventListener('load', (event) => {
       }
     });
   })
+
 
 });
