@@ -1,4 +1,4 @@
 [submodule "includes/ui/notification-hub/assets/wp-core"]
 	path = includes/ui/notification-hub/assets/wp-core
-	url = https://github.com/ryelle/wordpress-develop.git
-	branch = try/custom-properties
+	url = https://github.com/erikyo/wordpress-develop.git
+	branch = patch-1
