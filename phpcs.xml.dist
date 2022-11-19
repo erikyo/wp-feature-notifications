@@ -20,26 +20,38 @@
 	<!-- Check up to 20 files simultaneously. -->
 	<arg name="parallel" value="20"/>
 
-	<!-- Show sniff codes in all reports. -->
-	<arg value="ps"/>
+  <file>.</file>
 
-	<file>.</file>
+	<!-- Rules: Check PHP version compatibility -->
+	<!-- https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
+	<config name="testVersion" value="7.1-"/>
 
-	<rule ref="WordPress-Core"/>
-	<rule ref="WordPress.CodeAnalysis.EmptyStatement"/>
+	<!-- Rules: WordPress Coding Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
+	<config name="minimum_supported_wp_version" value="7.1"/>
 
-	<!-- These rules are being set as warnings instead of errors, so we can error check the entire codebase. -->
-	<rule ref="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase">
-		<type>warning</type>
+	<!-- https://github.com/PHPCompatibility/PHPCompatibilityWP -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress" />
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wp-notify"/>
+			</property>
+		</properties>
 	</rule>
-	<rule ref="WordPress.DB.PreparedSQL.InterpolatedNotPrepared">
-		<type>warning</type>
-	</rule>
-	<rule ref="WordPress.DB.PreparedSQL.NotPrepared">
-		<type>warning</type>
-	</rule>
-	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<type>warning</type>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="wp_notify_"/>
+			</property>
+		</properties>
 	</rule>
 
 	<rule ref="WordPress.NamingConventions.ValidVariableName"/>
@@ -48,15 +60,9 @@
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>
 	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+	<exclude-pattern>/storybook-static/*</exclude-pattern>
+	<exclude-pattern>/src/*</exclude-pattern>
+	<exclude-pattern>/docs/*</exclude-pattern>
 
-	<!-- Exclude the unit tests from select sniffs. -->
-	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
-		<exclude-pattern>/tests/phpunit/tests/*</exclude-pattern>
-	</rule>
-	<rule ref="PEAR.NamingConventions.ValidClassName.Invalid">
-		<exclude-pattern>/tests/phpunit/tests/*</exclude-pattern>
-	</rule>
-	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<exclude-pattern>/tests/phpunit/tests/*</exclude-pattern>
-	</rule>
 </ruleset>
