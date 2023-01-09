@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { findContext } from './utils';
+import { saveState } from './localStorage';
 
 /**
  * Fetch the rest api in order to get new notifications
@@ -18,6 +19,7 @@ export const fetchUpdates = (state) => state || {};
  * @return {Object[]} the list of notices of the context
  */
 export const getNotices = (state, context) => {
+	saveState(state);
 	return context ? state[context] : state;
 };
 

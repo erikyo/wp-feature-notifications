@@ -1,4 +1,7 @@
 import { findContext } from './utils';
+import { loadState } from './localStorage';
+
+const persistedState = loadState();
 
 /**
  * Reducer returning the next notices state. The notices state is an object
@@ -9,7 +12,7 @@ import { findContext } from './utils';
  *
  * @return {Object} Updated state.
  */
-const reducer = (state = {}, action) => {
+const reducer = (state = persistedState, action) => {
 	switch (action.type) {
 		case 'HYDRATE':
 			let updated = { ...state };
